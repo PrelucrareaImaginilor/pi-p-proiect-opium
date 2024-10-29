@@ -1,12 +1,17 @@
 <center> <h1>Clasificarea Imaginilor Medicale</center>
  
 <br></br>
-
  ## Proiect - Overview:
- added soon
+ - ### Obiectivul principal al proiectului nostru:
+ - [ ] Dezvoltarea unui sistem automat de clasificare a imaginilor medicale pentru a asista diagnosticarea rapida si precisa a diverselor patologii. 
 <br></br>
-
- 
+- ### Descriere generala:
+- [ ] Ne propunem sa implementam un sistem de inteligenta artificiala capabil sa analizeze si sa clasifice diferite tipuri de imagini medicale (radiografii, RMN-uri, CT-uri) in diverse categorii de diagnostic. Sistemul va utiliza tehnici avansate de deep learning pentru a invata pattern-uri si caracteristici specifice diferitelor afectiuni medicale.
+<br></br>
+- ### Tehnologii utilizate pentru implementare:
+- [ ] Python cu framework-uri de deep learning(TensorFlow/PyTorch)
+- [ ] OpenCV pentru procesarea imaginilor
+<br></br> 
  ## Tabel cu analiza literaturii de specialitate</ins>:
 <br></br> 
 | Autor(i)/An | Tilul Articolului/proiectului | Aplicatie/Domeniu | Tehnologii utilizate | Metodologie/Abordare | Rezultate | Limitari | Comentarii Suplimentare |
