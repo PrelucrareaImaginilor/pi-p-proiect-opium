@@ -1,7 +1,10 @@
 <center> <h1>Clasificarea Imaginilor Medicale</center>
  
-<br>
+<br></br>
 
+ ## Proiect - Overview:
+ added soon
+<br></br>
 
  
  ## Tabel cu analiza literaturii de specialitate</ins>:
@@ -24,6 +27,6 @@
 </p>
 <br><br>
 
-## Descriere proiect + detalierea componentelor din schema bloc:
+## Schema bloc - detaliere:
 
 will be added soon -_-
