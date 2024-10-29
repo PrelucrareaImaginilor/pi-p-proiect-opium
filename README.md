@@ -35,3 +35,11 @@
 ## Schema bloc - detaliere:
 
 will be added soon -_-
+<br></br>
+## Bibliografie:
+- https://ieeexplore.ieee.org/document/9985621 [cel mai relevant]
+- https://ieeexplore.ieee.org/document/10255649
+- https://ieeexplore.ieee.org/document/9258822
+- https://ieeexplore.ieee.org/document/9103969
+- https://ieeexplore.ieee.org/document/10692015
+- https://ieeexplore.ieee.org/document/10537664
