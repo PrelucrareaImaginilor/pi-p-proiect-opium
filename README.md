@@ -33,33 +33,25 @@
 <br><br>
 
 ## Schema bloc - detaliere:
-<br></br>
 
-- ### Achizitia de imagini medicale
+- ### 1 - <ins> Achizitia de imagini medicale </ins>
 - [ ] Pentru a putea începe tot procesul de analizare și computerizare sunt necesare imaginile care ne ajuta sa extragem informațiile de care avem nevoie pentru a putea trage o concluzie cât mai corectă.
 <br></br>
 
-<br></br>
-- ### Imbunatatirea imaginii
+- ### 2 - <ins> Imbunatatirea imaginii </ins>
 - [ ] Imbunatatirea imaginii este procesul prin care se creste calitatea unei poze. Acest proces ajuta la corectarea anumitor defecte sau probleme ale input-ului pentru obtinerea mai exacta a informatiilor oferite de catre imagine. Tehnicile cele mai des intalnite sunt cresterea contrastului, sharpness-ului, saturatia sau scaderea zgomotului si blur-ului. Exista multe alte moduri pentru cresterea claritatii unei imagini, iar acestea sunt folosite in functie de datele (imaginile) folosite. Metodele mentionate mai devreme se pot aplica manual sau cu ajutorul anumitor aplicatii specifice (ex. OpenCV).
 <br></br>
 
-<br></br>
-- ### Segmentarea imaginii
+- ### 3 - <ins> Segmentarea imaginii </ins>
 - [ ] Segmentarea imaginii este partea in care transformam imaginea noastra in asa fel incat este inteleasa de calculator cat mai eficient. Procesul din spatele acestei metode este impartirea pozei in grupuri mai mici de pixeli pentru a putea diferentia background-ul sau identificarea unui obiect.
 <br></br>
 
-<br></br>
-- ### Evidentierea caracteristicilor
+- ### 4 - <ins> Evidentierea caracteristicilor </ins>
 - [ ]  Evidentierea caracteristicilor consta in scoaterea in evidenta a partilor relevante dintr-o imagine pentru a putea analiza si interpreta informatiile rezultatului (in cazul proiectului, detaliile care pot ajuta la clasificarea imaginii medicale: X-ray, CT-scan etc.).
 <br></br>
 
-<br></br>
-- ### Clasificarea imaginilor
+- ### 5 - <ins> Clasificarea imaginilor </ins>
 - [ ]  Dupa adunarea tuturor informatiilor necesare pentru realizarea unei concluzii cat mai corecte se specifica tipul imaginii dupa anumite criterii bine definite (X-ray, CT-scan, Ecografie, Angiografie etc.).
-<br></br>
-
-will be added soon -_-
 <br></br>
 ## Bibliografie:
 - https://ieeexplore.ieee.org/document/9985621 [cel mai relevant]
