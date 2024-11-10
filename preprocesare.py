@@ -1,6 +1,7 @@
 from glob import glob
 import shutil
 import os
+import dicom2nifti
 
 """
 OBS! ESTE NECESARA INCLUDEREA ACESTOR LIBRARII :) - se pot descarca cu pip ( ex. : pip install glob2 )
@@ -50,4 +51,28 @@ def preprocessImages():
                     break
                 shutil.move(file, output_path_name)  # mut file-ul in directorul dorit
                 
-  
+"""
+Convertire din dicom in .nii
+"""
+
+#SE FACE UN FOLDER NOU (ex. nifti_files) in care se pun imaginile convertite din dicom in .nii
+
+
+def convertD2N():
+
+    in_path_images = 'C:/the_right_path/dicom_groups/images/*'
+    in_path_labels = 'C:/the_right_path/dicom_groups/labels/*'
+    out_path_images = 'C:/the_right_path/nifti_files/images'
+    out_path_labels = 'C:/the_right_path/nifti_files/labels'
+    
+    list_images = glob(in_path_images)
+    list_labels = glob(in_path_labels)
+    
+    for patient in list_images:
+        patient_name = os.path.basename(os.path.normpath(patient))
+        dicom2nifti.dicom_series_to_nifti(patient, os.path.join(out_path_images, patient_name + '.nii.gz'))
+    
+    for patient in list_labels:
+        patient_name = os.path.basename(os.path.normpath(patient))
+        dicom2nifti.dicom_series_to_nifti(patient, os.path.join(out_path_labels, patient_name + '.nii.gz'))
+    
