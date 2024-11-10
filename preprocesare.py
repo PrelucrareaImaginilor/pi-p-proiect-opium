@@ -2,6 +2,8 @@ from glob import glob
 import shutil
 import os
 import dicom2nifti
+import nibabel as nib
+import numpy as np
 
 """
 OBS! ESTE NECESARA INCLUDEREA ACESTOR LIBRARII :) - se pot descarca cu pip ( ex. : pip install glob2 )
@@ -76,3 +78,21 @@ def convertD2N():
         patient_name = os.path.basename(os.path.normpath(patient))
         dicom2nifti.dicom_series_to_nifti(patient, os.path.join(out_path_labels, patient_name + '.nii.gz'))
     
+
+"""
+Daca sunt probleme cu perfomanta, se poate apela aceasta functie pentru eliminarea imaginilor neajutatoare
+"""
+
+def findEmpty():
+    
+    input_nifti_file_path = 'D:/AC/An III/PI/Project/Liver/Task03_Liver/nifti_files/labels/*' # path-ul pentru pacienti
+    
+    list_labels = glob(input_nifti_file_path)
+    
+    for patient in list_labels:
+        
+        nifti_file = nib.load(patient) # load la un pacient
+        fdata = nifti_file.get_fdata()
+        np_unique = np.unique(fdata) # returneaza un array ( daca returneaza doar 0 - este doar background)
+        if len(np_unique) == 1:
+            del patient
