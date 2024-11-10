@@ -85,7 +85,7 @@ Daca sunt probleme cu perfomanta, se poate apela aceasta functie pentru eliminar
 
 def findEmpty():
     
-    input_nifti_file_path = 'D:/AC/An III/PI/Project/Liver/Task03_Liver/nifti_files/labels/*' # path-ul pentru pacienti
+    input_nifti_file_path = 'C:/the_right_path/nifti_files/labels/*' # path-ul pentru pacienti
     
     list_labels = glob(input_nifti_file_path)
     
