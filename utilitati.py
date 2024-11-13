@@ -26,7 +26,7 @@ def calculate_weights(val1, val2):
     weights = weights/summ
     return torch.tensor(weights, dtype=torch.float32)
 
-def train(model, data_in, loss, optim, max_epochs, model_dir, test_interval=1 , device=torch.device("cuda:0")):
+def train(model, data_in, loss, optim, max_epochs, model_dir, test_interval=1 , device=torch.device("cpu")):
     best_metric = -1
     best_metric_epoch = -1
     save_loss_train = []

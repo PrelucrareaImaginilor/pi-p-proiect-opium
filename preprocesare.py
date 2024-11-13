@@ -23,7 +23,7 @@ Pentru adaugare de transformari mari, acestea trebuie realizate in partea de *tr
 
 
 def prepare(in_dir, 
-            pixdim=(1.5, 1.5, 1.0), 
+            pixdim=(1.0, 1.0, 1.0), 
             a_min=-200, a_max=200, 
             spatial_size=[128, 128, 64] # al treilea parametru ar trebuie sa fie numarul de slice-uri CORECT !!!! (minimul dintre toate imaginile)
             , cache=True):
@@ -34,11 +34,11 @@ def prepare(in_dir,
 
     set_determinism(seed=0)
 
-    path_train_volumes = sorted(glob(os.path.join(in_dir, "TrainVolumes", "*.nii.gz")))
-    path_train_segmentation = sorted(glob(os.path.join(in_dir, "TrainSegmentation", "*.nii.gz")))
+    path_train_volumes = sorted(glob(os.path.join(in_dir, "TrainVolumes", "*.nii")))
+    path_train_segmentation = sorted(glob(os.path.join(in_dir, "TrainSegmentation", "*.nii")))
 
-    path_test_volumes = sorted(glob(os.path.join(in_dir, "TestVolumes", "*.nii.gz")))
-    path_test_segmentation = sorted(glob(os.path.join(in_dir, "TestSegmentation", "*.nii.gz")))
+    path_test_volumes = sorted(glob(os.path.join(in_dir, "TestVolumes", "*.nii")))
+    path_test_segmentation = sorted(glob(os.path.join(in_dir, "TestSegmentation", "*.nii")))
 
     train_files = [{"vol": image_name, "seg": label_name} for image_name, label_name in  #crearea de dictionar pentru antrenare
                    zip(path_train_volumes, path_train_segmentation)]
@@ -51,7 +51,7 @@ def prepare(in_dir,
             EnsureChannelFirstD(keys=["vol", "seg"]),
             Spacingd(keys=["vol", "seg"], pixdim=pixdim, mode=("bilinear", "nearest")), # Spacingd folosit pentru a regla corect dimensiunile la imagini
             Orientationd(keys=["vol", "seg"], axcodes="RAS"),
-            ScaleIntensityRanged(keys=["vol"], a_min=a_min, a_max=a_max, b_min=0.0, b_max=1.0, clip=True), # variabilele a si b sunt folosite pentru a schimba contrastul imaginilior pacientilor
+            ScaleIntensityRanged(keys=["vol"], a_min=-175, a_max=250, b_min=0.0, b_max=1.0, clip=True), # variabilele a si b sunt folosite pentru a schimba contrastul imaginilior pacientilor
             CropForegroundd(keys=["vol", "seg"], source_key="vol"),
             Resized(keys=["vol", "seg"], spatial_size=spatial_size),
             ToTensord(keys=["vol", "seg"]), # convertire in tensor
