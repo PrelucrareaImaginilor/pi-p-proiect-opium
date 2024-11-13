@@ -3,14 +3,14 @@
 <br></br>
  ## Proiect - Overview:
  - ### Obiectivul principal al proiectului nostru:
- - [ ] Dezvoltarea unui sistem automat de clasificare a imaginilor medicale pentru a asista diagnosticarea rapida si precisa a diverselor patologii. 
+ - [ ] Dezvoltarea unui sistem automat de clasificare a imaginilor medicale pentru a asista diagnosticarea rapida si precisa a diverselor organe. 
 <br></br>
 - ### Descriere generala:
-- [ ] Ne propunem sa implementam un sistem de inteligenta artificiala capabil sa analizeze si sa clasifice diferite tipuri de imagini medicale (radiografii, RMN-uri, CT-uri) in diverse categorii de diagnostic. Sistemul va utiliza tehnici avansate de deep learning pentru a invata pattern-uri si caracteristici specifice diferitelor afectiuni medicale.
+- [ ] Ne propunem sa implementam un sistem de inteligenta artificiala capabil sa analizeze si sa segmneteze si sa clasifice diferite organe conform unor RMN-uri . Sistemul va utiliza tehnici avansate de deep learning pentru a invata pattern-uri si caracteristici specifice diferitelor afectiuni medicale.
 <br></br>
 - ### Tehnologii utilizate pentru implementare:
 - [ ] Python cu framework-uri de deep learning(TensorFlow/PyTorch)
-- [ ] OpenCV pentru procesarea imaginilor
+- [ ] Monai si OpenCV pentru procesarea imaginilor
 <br></br> 
  ## Tabel cu analiza literaturii de specialitate</ins>:
 <br></br> 
@@ -39,7 +39,7 @@
 <br></br>
 
 - ### 2 - <ins> Imbunatatirea imaginii </ins>
-- [ ] Imbunatatirea imaginii este procesul prin care se creste calitatea unei poze. Acest proces ajuta la corectarea anumitor defecte sau probleme ale input-ului pentru obtinerea mai exacta a informatiilor oferite de catre imagine. Tehnicile cele mai des intalnite sunt cresterea contrastului, sharpness-ului, saturatia sau scaderea zgomotului si blur-ului. Exista multe alte moduri pentru cresterea claritatii unei imagini, iar acestea sunt folosite in functie de datele (imaginile) folosite. Metodele mentionate mai devreme se pot aplica manual sau cu ajutorul anumitor aplicatii specifice (ex. OpenCV).
+- [ ] Imbunatatirea imaginii este procesul prin care se creste calitatea unei poze. Acest proces ajuta la corectarea anumitor defecte sau probleme ale input-ului pentru obtinerea mai exacta a informatiilor oferite de catre imagine. Tehnicile cele mai des intalnite sunt cresterea contrastului, sharpness-ului, saturatia sau scaderea zgomotului si blur-ului. Exista multe alte moduri pentru cresterea claritatii unei imagini, iar acestea sunt folosite in functie de datele (imaginile) folosite. Metodele mentionate mai devreme se pot aplica manual sau cu ajutorul anumitor aplicatii specifice (ex. OpenCV, Monai).
 <br></br>
 
 - ### 3 - <ins> Segmentarea imaginii </ins>
@@ -47,11 +47,11 @@
 <br></br>
 
 - ### 4 - <ins> Evidentierea caracteristicilor </ins>
-- [ ]  Evidentierea caracteristicilor consta in scoaterea in evidenta a partilor relevante dintr-o imagine pentru a putea analiza si interpreta informatiile rezultatului (in cazul proiectului, detaliile care pot ajuta la clasificarea imaginii medicale: X-ray, CT-scan etc.).
+- [ ]  Evidentierea caracteristicilor consta in scoaterea in evidenta a partilor relevante dintr-o imagine pentru a putea analiza si interpreta informatiile rezultatului (in cazul proiectului, detaliile care pot ajuta la segmentarea corecta a organului cautat).
 <br></br>
 
 - ### 5 - <ins> Clasificarea imaginilor </ins>
-- [ ]  Dupa adunarea tuturor informatiilor necesare pentru realizarea unei concluzii cat mai corecte se specifica tipul imaginii dupa anumite criterii bine definite (X-ray, CT-scan, Ecografie, Angiografie etc.).
+- [ ]  Dupa adunarea tuturor informatiilor necesare pentru realizarea unei concluzii cat mai corecte se specifica tipul imaginii dupa anumite criterii bine definite (segmentare de ficat, de inima, etc.)
 <br></br>
 ## Bibliografie:
 - https://ieeexplore.ieee.org/document/9985621 [cel mai relevant]
@@ -60,3 +60,4 @@
 - https://ieeexplore.ieee.org/document/9103969
 - https://ieeexplore.ieee.org/document/10692015
 - https://ieeexplore.ieee.org/document/10537664
+- https://docs.monai.io/en/stable/api.html
