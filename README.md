@@ -1,9 +1,9 @@
-<center> <h1>Clasificarea Imaginilor Medicale</center>
+<center> <h1>Segmentarea Imaginilor Medicale</center>
  
 <br></br>
  ## Proiect - Overview:
  - ### Obiectivul principal al proiectului nostru:
- - [ ] Dezvoltarea unui sistem automat de clasificare a imaginilor medicale pentru a asista diagnosticarea rapida si precisa a diverselor organe. 
+ - [ ] Dezvoltarea unui sistem automat de segmentare a imaginilor medicale pentru a asista diagnosticarea rapida si precisa a diverselor organe. 
 <br></br>
 - ### Descriere generala:
 - [ ] Ne propunem sa implementam un sistem de inteligenta artificiala capabil sa analizeze si sa segmneteze si sa clasifice diferite organe conform unor RMN-uri . Sistemul va utiliza tehnici avansate de deep learning pentru a invata pattern-uri si caracteristici specifice diferitelor afectiuni medicale.
