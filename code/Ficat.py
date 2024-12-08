@@ -1,4 +1,4 @@
-from interface import implements, Interface
+from interface import implements
 from Organ import Organ
 
 class Ficat(implements(Organ)):
