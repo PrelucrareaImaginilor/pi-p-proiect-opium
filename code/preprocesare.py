@@ -60,9 +60,12 @@ def prepare(in_dir,
     ])
 
     # Load data
-    dataset_type = CacheDataset if cache else Dataset
-    train_ds = dataset_type(data=train_files, transform=train_transforms, cache_rate=1.0)
-    train_loader = DataLoader(train_ds, batch_size=1, num_workers=num_workers)
+    try:
+        dataset_type = CacheDataset if cache else Dataset
+        train_ds = dataset_type(data=train_files, transform=train_transforms, cache_rate=1.0)
+        train_loader = DataLoader(train_ds, batch_size=1, num_workers=num_workers)
+    except Exception as e:
+        print(f"Error {e}")
 
     test_ds = dataset_type(data=test_files, transform=test_transforms, cache_rate=1.0)
     test_loader = DataLoader(test_ds, batch_size=1, num_workers=num_workers)
@@ -100,10 +103,11 @@ def prepare_train(in_dir, pixdim=(1.0, 1.0, 1.0), spatial_size=[128, 128, 64], c
 
 
 def prepare_test(in_dir, pixdim=(1.0, 1.0, 1.0), spatial_size=[128, 128, 64]):
-   
-    path_test_volumes = sorted(glob(os.path.join(in_dir, "TestVolumes", "*.nii")))
-    path_test_segmentation = sorted(glob(os.path.join(in_dir, "TestSegmentation", "*.nii")))
-
+    try:
+        path_test_volumes = sorted(glob(os.path.join(in_dir, "TestVolumes", "*.nii")))
+        path_test_segmentation = sorted(glob(os.path.join(in_dir, "TestSegmentation", "*.nii")))
+    except Exception as e:
+        print(f"Error {e}")
     test_files = [{"vol": image_name, "seg": label_name} for image_name, label_name in zip(path_test_volumes, path_test_segmentation)]
 
     test_transforms = Compose([
