@@ -1,0 +1,3 @@
+Organ -> interfata sau clasa abstracta? not sure yet...
+implementare clasa Ficat
+implementare clasa Inima
