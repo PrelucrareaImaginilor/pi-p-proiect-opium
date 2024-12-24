@@ -14,24 +14,19 @@ from monai.transforms import (
     CropForegroundd,
 )
 from monai.data import DataLoader, Dataset, CacheDataset
-
-from monai.utils import first
-import matplotlib.pyplot as plt
-import torch
 import os
-import numpy as np
-from Organ import *
 from monai.inferers import sliding_window_inference
 from matplotlib.colors import ListedColormap
+from Organ import *
 from utilitati import *
+from Organ import *
 
-class Ficat(Organ):
-
+class Pancreas(Organ):
     def __init__(self, data_dir, model_dir, model_path):
         self.data_dir = data_dir
         self.model_dir = model_dir
         self.model_path = model_path
-            
+    
     def prepare_train(self, in_dir, pixdim=(1.0, 1.0, 1.0), spatial_size=[128, 128, 64], cache=True):
         in_dir = self.data_dir
         path_train_volumes = sorted(glob(os.path.join(in_dir, "TrainVolumes", "*.nii")))
@@ -58,7 +53,7 @@ class Ficat(Organ):
             train_ds = Dataset(data=train_files, transform=train_transforms)
             train_loader = DataLoader(train_ds, batch_size=1)
             return train_loader
-        
+    
     def prepare_test(self, pixdim=(1.0, 1.0, 1.0), spatial_size=[128, 128, 64]):
         try:
             in_dir = self.data_dir
@@ -190,7 +185,7 @@ class Ficat(Organ):
         print(
             f"train completed, best_metric: {best_metric:.4f} "
             f"at epoch: {best_metric_epoch}")
-    
+        
     def results(self,test_loader,model,device):
 
         sw_batch_size = 4 # impartim imaginea in bucati mai mici de 4
@@ -218,7 +213,7 @@ class Ficat(Organ):
                 plt.imshow(image, cmap="gray")
 
                 plt.subplot(1, 2, 2)
-                plt.title(f" Segmentarea ficatului la imaginea {i} ")
+                plt.title(f" Segmentarea pancreasului la imaginea {i} ")
                 plt.imshow(np.zeros_like(label), cmap="gray")  
                 plt.imshow(label, cmap=ListedColormap(["black", "yellow"]), alpha=0.7)  
 
