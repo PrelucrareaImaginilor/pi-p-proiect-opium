@@ -41,38 +41,40 @@ def main():
     )
 
     while True:
-        check = int(input('1 - Train Liver || 2 - Train Pancreas || 3 - PASS ==> '))
-        if check == 1:
+        train = input('1 - Train Liver || 2 - Train Pancreas || 3 - PASS ==> ')
+        if not train.isdigit() or int(train) not in (1,2,3):
+            print('Not a valid choice!')
+        elif int(train) == 1:
             data_in = (liver.prepare_train(liver.data_dir, cache=True), liver.prepare_test(spatial_size=[128,128,64]))
             loss_function = DiceLoss(to_onehot_y=True, sigmoid=True, squared_pred=True)
             optimizer = torch.optim.Adam(model.parameters(), 1e-5, weight_decay=1e-5, amsgrad=True)
             liver.train(model, data_in, loss_function, optimizer, 50, liver.model_dir)
             break
-        elif check == 2:
-            data_in =(pancreas.prepare_train(pancreas.data_dir, cache=True), pancreas.prepare_test(spatial_size=[128,128,64]))
+        elif int(train) == 2:
+            data_in = (pancreas.prepare_train(pancreas.data_dir, cache=True), pancreas.prepare_test(spatial_size=[128,128,64]))
             loss_function = DiceLoss(to_onehot_y=True, sigmoid=True, squared_pred=True)
             optimizer = torch.optim.Adam(model.parameters(), 1e-5, weight_decay=1e-5, amsgrad=True)
             pancreas.train(model, data_in, loss_function, optimizer, 50, pancreas.model_dir)
             break
-        elif check == 3: 
+        elif int(train) == 3:
             break
-        else: 
-            print('Not a valid choice!')
 
     while True:
-        check = int(input('1 - Liver Results || 2 - Pancreas Results ==> '))
-        if check == 1:
+        segment = input('1 - Liver Results || 2 - Pancreas Results ==> ')
+        if not segment.isdigit() or int(segment) not in (1,2):
+            print('Not a valid choice!')
+        elif int(segment) == 1:
             test_loader = liver.prepare_test(spatial_size=[128,128,64])
             model.load_state_dict(torch.load(liver.model_path, map_location=device))
             model.eval() # setam modelul pe evaluare, nu il antrenam fiecare data
             liver.results(test_loader,model,device)
-        elif check == 2:
+            break
+        elif int(segment) == 2:
             test_loader = pancreas.prepare_test(spatial_size=[128,128,64])
             model.load_state_dict(torch.load(pancreas.model_path, map_location=device))
             model.eval() # setam modelul pe evaluare, nu il antrenam fiecare data
             pancreas.results(test_loader,model,device)
-        else:
-            print('Not a valid choice!')
+            break
         
 if __name__ == '__main__':
     main()

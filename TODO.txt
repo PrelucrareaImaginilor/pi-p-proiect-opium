@@ -1,3 +1,2 @@
-Organ -> interfata sau clasa abstracta? not sure yet...
-implementare clasa Ficat
-implementare clasa Inima
+- clasa Train doar cu functia train : sa fie mai clean
+- clean up main : pus in functii etc sa arate ordonat si usor de inteles
