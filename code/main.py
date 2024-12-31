@@ -17,12 +17,6 @@ PATH-URI trebuie setate in functie de direatoarele utilizatorului !!!!!!!
 '''
 def main():
 
-    while True:
-        ok = input("Do you want to train the model?y/n\n")
-        if ok == "y" or ok == "n" or ok == "yes" or ok == "no":
-            break
-        else:
-            print("Enter a valid answer")
 
     device = torch.device("cpu" if not torch.cuda.is_available() else "cuda")
     model = UNet(
@@ -36,42 +30,49 @@ def main():
     ).to(device)
 
     liver = Ficat(
-        data_dir = 'D:/AC/An III/PI/Project/Liver/Task03_Liver/Data_Train_Test_Kaggle',
-        model_dir = 'D:/AC/An III/PI/Project/Liver/Task03_Liver/results',
-        model_path = 'D:/AC/An III/PI/Project/Liver/Task03_Liver/results/best_metric_model.pth'
+        data_dir = '/home/asaf/Downloads/Liver/Data_Train_Test_Kaggle',
+        model_dir = '/home/asaf/Downloads/Liver/results',
+        model_path = '/home/asaf/Downloads/Liver/results/best_metric_model.pth'
     )
     pancreas = Pancreas(
-        data_dir = 'D:/AC/An III/PI/Project/Pancreas/Pancreas/Data_Train_Test_Kaggle',
-        model_dir = 'D:/AC/An III/PI/Project/Pancreas/Pancreas/results',
-        model_path = 'D:/AC/An III/PI/Project/Pancreas/Pancreas/results/best_metric_model.pth'
+        data_dir = '/home/asaf/Downloads/Pancreas/Data_Train_Test_Kaggle',
+        model_dir = '/home/asaf/Downloads/Pancreas/results',
+        model_path = '/home/asaf/Downloads/Pancreas/results/best_metric_model.pth'
     )
 
-    if ok == "y" or ok == "yes":
-        check = input('1 - Ficat || 2 - Pancreas\n')
-        if check == "1":
+    while True:
+        check = int(input('1 - Train Liver || 2 - Train Pancreas || 3 - PASS ==> '))
+        if check == 1:
             data_in = (liver.prepare_train(liver.data_dir, cache=True), liver.prepare_test(spatial_size=[128,128,64]))
             loss_function = DiceLoss(to_onehot_y=True, sigmoid=True, squared_pred=True)
             optimizer = torch.optim.Adam(model.parameters(), 1e-5, weight_decay=1e-5, amsgrad=True)
             liver.train(model, data_in, loss_function, optimizer, 50, liver.model_dir)
-        elif check == "2":
+            break
+        elif check == 2:
             data_in =(pancreas.prepare_train(pancreas.data_dir, cache=True), pancreas.prepare_test(spatial_size=[128,128,64]))
             loss_function = DiceLoss(to_onehot_y=True, sigmoid=True, squared_pred=True)
             optimizer = torch.optim.Adam(model.parameters(), 1e-5, weight_decay=1e-5, amsgrad=True)
             pancreas.train(model, data_in, loss_function, optimizer, 50, pancreas.model_dir)
+            break
+        elif check == 3: 
+            break
+        else: 
+            print('Not a valid choice!')
 
-    if ok == "n" or ok == "no":
-        check = input('1 - Ficat || 2 - Pancreas\n')
-        if check == "1":
+    while True:
+        check = int(input('1 - Liver Results || 2 - Pancreas Results ==> '))
+        if check == 1:
             test_loader = liver.prepare_test(spatial_size=[128,128,64])
             model.load_state_dict(torch.load(liver.model_path, map_location=device))
             model.eval() # setam modelul pe evaluare, nu il antrenam fiecare data
             liver.results(test_loader,model,device)
-        elif check == "2":
+        elif check == 2:
             test_loader = pancreas.prepare_test(spatial_size=[128,128,64])
             model.load_state_dict(torch.load(pancreas.model_path, map_location=device))
             model.eval() # setam modelul pe evaluare, nu il antrenam fiecare data
             pancreas.results(test_loader,model,device)
-
-
+        else:
+            print('Not a valid choice!')
+        
 if __name__ == '__main__':
     main()
