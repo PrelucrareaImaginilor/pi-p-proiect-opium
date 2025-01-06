@@ -1,2 +1,2 @@
 - clasa Train doar cu functia train : sa fie mai clean
-- clean up main : pus in functii etc sa arate ordonat si usor de inteles
+- grafice DICE Score

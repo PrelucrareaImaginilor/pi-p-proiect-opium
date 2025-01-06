@@ -135,17 +135,17 @@ def train(model, data_in, loss, optim, max_epochs, model_dir, test_interval=1 , 
         f"at epoch: {best_metric_epoch}")
 
 def plotLiver():
-    # Load data
+    
     train_loss = np.load('/home/asaf/Downloads/Liver/results/loss_train.npy')
     train_metric = np.load('/home/asaf/Downloads/Liver/results/metric_train.npy')
     test_loss = np.load('/home/asaf/Downloads/Liver/results/loss_test.npy')
     test_metric = np.load('/home/asaf/Downloads/Liver/results/metric_test.npy')
 
-    # Create a figure
+    
     plt.figure(figsize=(12, 10))
 
-    # Training Loss
-    plt.subplot(2, 2, 1)  # 2 rows, 2 columns, 1st plot
+    
+    plt.subplot(2, 2, 1)  
     plt.plot(train_loss, color='blue', label='Training Loss')
     plt.title('Training DICE Loss - Liver ')
     plt.xlabel('Epoch')
@@ -153,8 +153,8 @@ def plotLiver():
     plt.legend()
     plt.grid(True)
 
-    # Training Metric
-    plt.subplot(2, 2, 2)  # 2 rows, 2 columns, 2nd plot
+    
+    plt.subplot(2, 2, 2)  
     plt.plot(train_metric, color='orange', label='Training Metric')
     plt.title('Training DICE Metric - Liver')
     plt.xlabel('Epoch')
@@ -162,8 +162,7 @@ def plotLiver():
     plt.legend()
     plt.grid(True)
 
-    # Testing Loss
-    plt.subplot(2, 2, 3)  # 2 rows, 2 columns, 3rd plot
+    plt.subplot(2, 2, 3)  
     plt.plot(test_loss, color='green', label='Testing Loss')
     plt.title('Testing DICE Loss - Liver')
     plt.xlabel('Epoch')
@@ -171,7 +170,7 @@ def plotLiver():
     plt.legend()
     plt.grid(True)
 
-    plt.subplot(2, 2, 4)  # 2 rows, 2 columns, 4th plot
+    plt.subplot(2, 2, 4) 
     plt.plot(test_metric, color='red', label='Testing Metric')
     plt.title('Testing DICE Metric - Liver')
     plt.xlabel('Epoch')
