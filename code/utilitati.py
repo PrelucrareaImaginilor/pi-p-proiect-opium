@@ -134,59 +134,99 @@ def train(model, data_in, loss, optim, max_epochs, model_dir, test_interval=1 , 
         f"train completed, best_metric: {best_metric:.4f} "
         f"at epoch: {best_metric_epoch}")
 
+def plotLiver():
+    # Load data
+    train_loss = np.load('/home/asaf/Downloads/Liver/results/loss_train.npy')
+    train_metric = np.load('/home/asaf/Downloads/Liver/results/metric_train.npy')
+    test_loss = np.load('/home/asaf/Downloads/Liver/results/loss_test.npy')
+    test_metric = np.load('/home/asaf/Downloads/Liver/results/metric_test.npy')
 
-def show_patient(data, SLICE_NUMBER=1, train=True, test=False):
-    
-    """
-    cateva date utile despre aceasta functie 
+    # Create a figure
+    plt.figure(figsize=(12, 10))
 
-    `data`: this parameter should take the patients from the data loader, which means you need to can the function
-    prepare first and apply the transforms that you want after that pass it to this function so that you visualize 
-    the patient with the transforms that you want.
-    `SLICE_NUMBER`: this parameter will take the slice number that you want to display/show
-    `train`: this parameter is to say that you want to display a patient from the training data (by default it is true)
-    `test`: this parameter is to say that you want to display a patient from the testing patients.
-    """
+    # Training Loss
+    plt.subplot(2, 2, 1)  # 2 rows, 2 columns, 1st plot
+    plt.plot(train_loss, color='blue', label='Training Loss')
+    plt.title('Training DICE Loss - Liver ')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
 
-    check_patient_train, check_patient_test = data
+    # Training Metric
+    plt.subplot(2, 2, 2)  # 2 rows, 2 columns, 2nd plot
+    plt.plot(train_metric, color='orange', label='Training Metric')
+    plt.title('Training DICE Metric - Liver')
+    plt.xlabel('Epoch')
+    plt.ylabel('Metric')
+    plt.legend()
+    plt.grid(True)
 
-    view_train_patient = first(check_patient_train)
-    view_test_patient = first(check_patient_test)
+    # Testing Loss
+    plt.subplot(2, 2, 3)  # 2 rows, 2 columns, 3rd plot
+    plt.plot(test_loss, color='green', label='Testing Loss')
+    plt.title('Testing DICE Loss - Liver')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
 
-    
-    if train:
-        plt.figure("Visualization Train", (12, 6))
-        plt.subplot(1, 2, 1)
-        plt.title(f"vol {SLICE_NUMBER}")
-        plt.imshow(view_train_patient["vol"][0, 0, :, :, SLICE_NUMBER], cmap="gray")
-
-        plt.subplot(1, 2, 2)
-        plt.title(f"seg {SLICE_NUMBER}")
-        plt.imshow(view_train_patient["seg"][0, 0, :, :, SLICE_NUMBER])
-        plt.show()
-    
-    if test:
-        plt.figure("Visualization Test", (12, 6))
-        plt.subplot(1, 2, 1)
-        plt.title(f"vol {SLICE_NUMBER}")
-        plt.imshow(view_test_patient["vol"][0, 0, :, :, SLICE_NUMBER], cmap="gray")
-
-        plt.subplot(1, 2, 2)
-        plt.title(f"seg {SLICE_NUMBER}")
-        plt.imshow(view_test_patient["seg"][0, 0, :, :, SLICE_NUMBER])
-        plt.show()
+    plt.subplot(2, 2, 4)  # 2 rows, 2 columns, 4th plot
+    plt.plot(test_metric, color='red', label='Testing Metric')
+    plt.title('Testing DICE Metric - Liver')
+    plt.xlabel('Epoch')
+    plt.ylabel('Metric')
+    plt.legend()
+    plt.grid(True)
 
 
-def calculate_pixels(data): 
-    val = np.zeros((1, 2))
+    plt.show()
 
-    for batch in tqdm(data):
-        batch_label = batch["seg"] != 0
-        _, count = np.unique(batch_label, return_counts=True)
 
-        if len(count) == 1:
-            count = np.append(count, 0)
-        val += count
 
-    print('The last values:', val)
-    return val
+def plotPancreas():
+    train_loss = np.load('/home/asaf/Downloads/Pancreas/results/loss_train.npy')
+    train_metric = np.load('/home/asaf/Downloads/Pancreas/results/metric_train.npy')
+    test_loss = np.load('/home/asaf/Downloads/Pancreas/results/loss_test.npy')
+    test_metric = np.load('/home/asaf/Downloads/Pancreas/results/metric_test.npy')
+
+    plt.figure(figsize=(12, 10))
+
+    plt.subplot(2, 2, 1)  
+    plt.plot(train_loss, color='blue', label='Training Loss')
+    plt.title('Training DICE Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
+
+    plt.subplot(2, 2, 2)  
+    plt.plot(train_metric, color='orange', label='Training Metric')
+    plt.title('Training DICE Metric')
+    plt.xlabel('Epoch')
+    plt.ylabel('Metric')
+    plt.legend()
+    plt.grid(True)
+
+    plt.subplot(2, 2, 3)  
+    plt.plot(test_loss, color='green', label='Testing Loss')
+    plt.title('Testing DICE Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
+
+    plt.subplot(2, 2, 4) 
+    plt.plot(test_metric, color='red', label='Testing Metric')
+    plt.title('Testing DICE Metric')
+    plt.xlabel('Epoch')
+    plt.ylabel('Metric')
+    plt.legend()
+    plt.grid(True)
+
+
+    plt.show()
+
+
+
+
