@@ -1,2 +1,0 @@
-- clasa Train doar cu functia train : sa fie mai clean
-- grafice DICE Score

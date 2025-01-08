@@ -60,7 +60,7 @@ def main():
             break
         elif int(train) == 3:
             break
-
+        
     while True:
         segment = input('1 - Liver Results || 2 - Pancreas Results || 3 - PASS ==> ')
         if not segment.isdigit() or int(segment) not in (1,2,3):
